@@ -11,7 +11,6 @@ public class Cleric {
     Random random = new Random();
 
     Cleric() {
-
     }
 
     Cleric(String name, int hp, int mp) {

@@ -6,20 +6,22 @@ public class Hero {
 
     Sword sword;
     static int money;
+
     Hero() {
-        this("김영웅",12);
+        this("김영웅", 12);
     }
 
-    Hero(String name,int hp) {
-        
+    Hero(String name, int hp) {
         this.name = name;
         this.hp = hp;
     }
+
     Hero(int hp) {
-        this("noname",hp);
+        this("noname", hp);
     }
+
     Hero(String name) {
-        this(name,100);
+        this(name, 100);
     }
 
     void attack() {}
@@ -45,19 +47,5 @@ public class Hero {
     void sleep() {
         this.hp = 100;
         System.out.println(this.name + "은 잠을 자고 회복했다!");
-    }
-    
-    public static void serRandomanoy () {
-        try {
-            try {
-                Hero.money = (int)(Math.random()*1000);
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
     }
 }
