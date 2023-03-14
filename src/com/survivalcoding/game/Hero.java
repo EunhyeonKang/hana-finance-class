@@ -1,9 +1,27 @@
 package com.survivalcoding.game;
 
 public class Hero {
-    String name="강은현";
+    String name;
     int hp;
-    
+
+    Sword sword;
+    static int money;
+    Hero() {
+        this("김영웅",12);
+    }
+
+    Hero(String name,int hp) {
+        
+        this.name = name;
+        this.hp = hp;
+    }
+    Hero(int hp) {
+        this("noname",hp);
+    }
+    Hero(String name) {
+        this(name,100);
+    }
+
     void attack() {}
 
     void run() {
@@ -27,5 +45,19 @@ public class Hero {
     void sleep() {
         this.hp = 100;
         System.out.println(this.name + "은 잠을 자고 회복했다!");
+    }
+    
+    public static void serRandomanoy () {
+        try {
+            try {
+                Hero.money = (int)(Math.random()*1000);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
