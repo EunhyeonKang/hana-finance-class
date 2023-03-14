@@ -2,10 +2,17 @@ package com.survivalcoding.game;
 
 public class Hero {
     String name;
-    int hp;
-
+    private int hp;
     Sword sword;
     static int money;
+
+    public int getHp() {
+        return this.hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
 
     Hero() {
         this("김영웅", 12);
