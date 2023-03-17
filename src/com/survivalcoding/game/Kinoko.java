@@ -1,13 +1,15 @@
 package com.survivalcoding.game;
 
-public class Kinoko {
+import com.Example10.Life;
+
+public class Kinoko implements Life{
     int hp;
     final int LEVEL = 10;
     char suffix;
-    Kinoko(){
+    public Kinoko(){
         
     }
-    Kinoko(int hp){
+    public Kinoko(int hp){
         this.hp = hp;
     }
     void run() {

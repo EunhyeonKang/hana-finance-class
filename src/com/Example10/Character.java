@@ -1,6 +1,6 @@
 package com.Example10;
 
-public abstract class Character {
+public abstract class Character{
     private String name;
 
     public Character(String name) {

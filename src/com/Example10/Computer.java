@@ -1,6 +1,6 @@
 package com.Example10;
 
-public class Computer extends TangibleAsset {
+public class Computer extends TangibleAsset implements Thing{
     private String makerName;
 
     public Computer(String name, int price, String color, String makerName) {

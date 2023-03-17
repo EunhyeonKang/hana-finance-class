@@ -1,6 +1,8 @@
 package com.survivalcoding.game;
 
-public class Wizard {
+import com.Example10.Life;
+
+public class Wizard implements Life{
     String name;
     int hp;
 

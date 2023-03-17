@@ -2,7 +2,7 @@ package com.Example10;
 
 import com.Example9.Hero;
 
-public class Kinoko {
+public class Kinoko implements Life {
     int hp = 50;
     private char suffix;
     //default 생성자 추가

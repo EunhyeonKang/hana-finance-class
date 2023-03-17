@@ -1,14 +1,19 @@
 package com.Example10;
 
-//자산
+// new를 하면 안될 것 같으니 abstract
 public abstract class Asset {
-    private double weight;
-
-    public double getWeight() {
-        return weight;
+    private String name;
+    private int price;
+    public Asset(String name, int price) {
+        this.name = name;
+        this.price = price;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }

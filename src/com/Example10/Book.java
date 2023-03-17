@@ -1,6 +1,6 @@
 package com.Example10;
 
-public class Book extends TangibleAsset {
+public class Book extends TangibleAsset implements Thing{
     private String isbn;
 
     public Book(String name, int price, String color, String isbn) {

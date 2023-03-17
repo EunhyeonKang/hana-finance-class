@@ -11,5 +11,6 @@ public class Main {
         Hero hero = new Hero();
         
         poisonKinoko.attack(hero);
+     
     }
 }
