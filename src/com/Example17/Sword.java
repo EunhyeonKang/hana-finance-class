@@ -1,4 +1,4 @@
-package com.Exam17;
+package com.Example17;
 
 import java.io.Serializable;
 
