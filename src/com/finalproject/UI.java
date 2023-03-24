@@ -20,6 +20,7 @@ public class UI {
 	public void initMenu() throws IOException {
 		while (select) {
 			System.out.println("=======도서 대출 관리 프로그램=======");
+			System.out.println("\t**회원가입부터 하세요**\t");
 			System.out.println("1. 관리자로그인\t2. 회원로그인\t3. 회원가입\t4. 종료");
 			System.out.print("번호로 입력해주세요 -> ");
 			int input = sc.nextInt();
@@ -60,7 +61,7 @@ public class UI {
 				bookMenu();
 			}
 		} else {
-			System.out.println(name + "이라는 관리자는 없습니다.");
+			System.out.println(name + "이라는 "+role+"은(는) 없습니다.");
 			initMenu();
 		}
 
@@ -72,7 +73,7 @@ public class UI {
 	private void bookMenu() throws IOException {
 		while (select) {
 			System.out.println("=======관리자 프로그램=======");
-			System.out.println("0. 뒤로\t 1. 나의대출내역\t 2. 대출가능도서\\t3. 종료");
+			System.out.println("0. 뒤로\t 1. 나의대출내역\t 2. 대출가능도서\t3. 종료");
 			System.out.print("번호로 입력해주세요 -> ");
 			int input = sc.nextInt();
 			switch (input) {
