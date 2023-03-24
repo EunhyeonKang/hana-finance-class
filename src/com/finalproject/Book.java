@@ -1,23 +1,17 @@
 package com.finalproject;
 
 public abstract class Book {
-	private int bookId;
-	private String title;
-	private String author;
-	private String pulisher;
-	private String year;
-	private boolean isbn;
-	private boolean isLoaned;
-	private int bookCount;
-	//    도서번호(bookId), 
-	//    도서명(title), 
-	//    저자(author), 
-	//    출판사(publisher), 
-	//    출판년도(year), 
-	//    ISBN(ISBN), 
-	//    대출여부(isLoaned)
-	
-	//    대출 여부 변경(changeLoanStatus), 
-	//    도서 정보 출력(printBookInfo)
+    private int bookId;         // 도서번호(bookId),
+    private String title;       // 도서명(title),
+    private String author;      // 저자(author),
+    private String pulisher;    // 출판사(publisher),
+    private String year;        // 출판년도(year),
+    private boolean isbn;       // ISBN(ISBN),
+    private boolean isLoaned;   // 대출여부(isLoaned)
+    private int bookCount;      // 대출 후 남은 도서 개수(bookCount);
+
+
+    // 대출 여부 변경(changeLoanStatus),
+    // 도서 정보 출력(printBookInfo)
 
 }
