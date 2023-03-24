@@ -33,6 +33,9 @@ public class UI {
                     break;
                 case 3:
                     crud.registerFile("member");
+                case 4:
+                    select = false;
+                    break;
                 default:
 
             }

@@ -7,6 +7,7 @@ public abstract class Member {
     private String name;                    // 이름(name),
     private int age;                        // 나이(age),
     private String phoneNumber;             // 전화번호(phoneNumber),
+    private String role;                    // 역할(role)
     private ArrayList<String> loanedBooks;  // 대출한 도서 목록(loanedBooks)
     
     
