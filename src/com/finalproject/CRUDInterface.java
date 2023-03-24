@@ -2,13 +2,13 @@ package com.finalproject;
 
 public interface CRUDInterface {
 	// 전체조회
-	void selectFile(String fileName);
+	void selectByFile(String fileName);
 	// 검색
 	boolean selectOneMember(String name, String role);
 	// 수정
-	void updateFile(String fileName);
+	void updateByFile(String fileName);
 	// 삭제
-	void deleteFile(String fileName, String backupName);
+	void deleteByFile(String fileName, String backupName);
 	// 등록
-	void registerFile(String fileName);
+	void registerByFile(String fileName);
 }

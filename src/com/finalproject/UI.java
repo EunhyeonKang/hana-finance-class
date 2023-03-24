@@ -32,7 +32,7 @@ public class UI {
                     loginMenu("회원");
                     break;
                 case 3:
-                    crud.registerFile("member");
+                    crud.registerByFile("member");
                 case 4:
                     select = false;
                     break;
@@ -75,7 +75,7 @@ public class UI {
     // 도서 메뉴
     private void bookMenu() throws IOException {
         while (select) {
-            System.out.println("=======관리자 프로그램=======");
+            System.out.println("=======도서 프로그램=======");
             System.out.println("0. 뒤로\t 1. 나의대출내역\t 2. 대출가능도서\t3. 종료");
             System.out.print("번호로 입력해주세요 -> ");
             int input = sc.nextInt();
@@ -84,10 +84,10 @@ public class UI {
                     initMenu();
                     break;
                 case 1:
-
+                    extensionAndReturnBook();
                     break;
                 case 2:
-
+                    excusionLoan();
                     break;
                 case 3:
                     select = false;
@@ -108,6 +108,79 @@ public class UI {
             }
         }
     }
+
+    private void excusionLoan() throws IOException {
+        // 연장/반납
+        while (select) {
+            System.out.println("=======대출실행 프로그램=======");
+            System.out.println("0. 뒤로\t 1. 대출실행\t3. 종료");
+            System.out.print("번호로 입력해주세요 -> ");
+            int input = sc.nextInt();
+            switch (input) {
+                case 0:
+                    bookMenu();
+                    break;
+                case 1:
+                    // 연장하기
+                    break;
+                case 2:
+                    // 반납하기
+                    break;
+                case 3:
+                    // 반납하기
+                    select = false;
+                    break;
+                default:
+            }
+            if (!select) {
+                break;
+            }
+            System.out.println("메뉴로 이동하시겠습니까? 1.yes 2.no");
+            if (sc.nextInt() == 1) {
+                select = true;
+            } else {
+                select = false;
+                break;
+            }
+        }
+    }
+
+    private void extensionAndReturnBook() throws IOException {
+        while (select) {
+            System.out.println("=======연장/반납 프로그램=======");
+            System.out.println("0. 뒤로\t 1. 연장\t 2. 반납\t3. 종료");
+            System.out.print("번호로 입력해주세요 -> ");
+            int input = sc.nextInt();
+            switch (input) {
+                case 0:
+                    bookMenu();
+                    break;
+                case 1:
+                    // 연장하기
+                    break;
+                case 2:
+                    // 반납하기
+                    break;
+                case 3:
+                    // 반납하기
+                    select = false;
+                    break;
+                default:
+            }
+            if (!select) {
+                break;
+            }
+            System.out.println("메뉴로 이동하시겠습니까? 1.yes 2.no");
+            if (sc.nextInt() == 1) {
+                select = true;
+            } else {
+                select = false;
+                break;
+            }
+        }
+    }
+
+
 
     // 관리자 메뉴
     public void managerMenu() throws IOException {
@@ -164,19 +237,19 @@ public class UI {
                     break;
                 // 조회
                 case 1:
-                    crud.selectFile(role);
+                    crud.selectByFile(role);
                     break;
                 // 등록
                 case 2:
-                    crud.registerFile(role);
+                    crud.registerByFile(role);
                     break;
                 // 수정
                 case 3:
-                    crud.updateFile(role);
+                    crud.updateByFile(role);
                     break;
                 // 삭제
                 case 4:
-                    crud.deleteFile(role, "backup_" + role);
+                    crud.deleteByFile(role, "backup_" + role);
                     break;
                 // 삭제 취소
                 case 5:

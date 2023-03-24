@@ -28,7 +28,7 @@ public class FileIO implements CRUDInterface {
     }
 
     // 가입
-    public void registerFile(String fileName) {
+    public void registerByFile(String fileName) {
         String filePath = "C:\\Users\\DA\\eclipse-workspace\\data\\" + fileName + ".csv";
         try {
             Scanner sc = new Scanner(System.in);
@@ -50,7 +50,7 @@ public class FileIO implements CRUDInterface {
 
     // 전체 조회
     @Override
-    public void selectFile(String fileName) {
+    public void selectByFile(String fileName) {
         String filePath = "C:\\Users\\DA\\eclipse-workspace\\data\\" + fileName + ".csv";
         File file = new File(filePath);
         CSVReader reader = null;
@@ -108,7 +108,7 @@ public class FileIO implements CRUDInterface {
 
     // 수정
     @Override
-    public void updateFile(String fileName) {
+    public void updateByFile(String fileName) {
         String filePath = "C:\\Users\\DA\\eclipse-workspace\\data\\" + fileName + ".csv";
         Scanner sc = new Scanner(System.in);
         // row값이 -1
@@ -143,7 +143,7 @@ public class FileIO implements CRUDInterface {
 
     // 삭제
     @Override
-    public void deleteFile(String fileName, String backupName) {
+    public void deleteByFile(String fileName, String backupName) {
         String filePath = "C:\\Users\\DA\\eclipse-workspace\\data\\" + fileName + ".csv";
         String backupFilePath = "C:\\Users\\DA\\eclipse-workspace\\data\\" + backupName + ".csv";
 
