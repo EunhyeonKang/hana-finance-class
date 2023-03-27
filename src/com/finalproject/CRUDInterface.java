@@ -11,4 +11,8 @@ public interface CRUDInterface {
 	void deleteByFile(String fileName, String backupName);
 	// 등록
 	void registerByFile(String fileName);
+	// 대출가능한 도서 조회
+    void selectByFile(String string, String name);
+    // 대출 등록
+    void registerLoan(String memberId, String input,String fileName);
 }

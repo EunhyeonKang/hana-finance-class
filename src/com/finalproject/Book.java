@@ -6,7 +6,6 @@ public abstract class Book {
     private String author;      // 저자(author),
     private String pulisher;    // 출판사(publisher),
     private String year;        // 출판년도(year),
-    private boolean isbn;       // ISBN(ISBN),
     private boolean isLoaned;   // 대출여부(isLoaned)
     private int bookCount;      // 대출 후 남은 도서 개수(bookCount);
     
@@ -18,7 +17,6 @@ public abstract class Book {
         this.author = author;
         this.pulisher = pulisher;
         this.year = year;
-        this.isbn = isbn;
         this.isLoaned = isLoaned;
         this.bookCount = bookCount;
     }
@@ -52,12 +50,6 @@ public abstract class Book {
     }
     public void setYear(String year) {
         this.year = year;
-    }
-    public boolean isIsbn() {
-        return isbn;
-    }
-    public void setIsbn(boolean isbn) {
-        this.isbn = isbn;
     }
     public boolean isLoaned() {
         return isLoaned;

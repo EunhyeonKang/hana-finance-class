@@ -8,9 +8,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
-
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
@@ -22,8 +23,8 @@ public class FileIO implements CRUDInterface {
     Scanner sc;
 
     public FileIO() {
-        memberHeader = new String[] {"번호", "이름", "주소", "전화번호", "구분"};
-        bookHeader = new String[] {"번호", "제목", "저자", "출판사", "출판년도", "ISBN", "대출여부", "대출 후 남은 도수 개수"};
+        memberHeader = new String[] {"아이디", "이름", "주소", "전화번호", "구분"};
+        bookHeader = new String[] {"도서번호", "제목", "저자", "출판사", "출판년도", "대출여부", "대출 후 남은 도수 개수"};
         sc = new Scanner(System.in);
     }
 
@@ -79,17 +80,17 @@ public class FileIO implements CRUDInterface {
 
     // 검색
     @Override
-    public boolean selectOneMember(String name, String role) {
+    public boolean selectOneMember(String loginId, String role) {
         String filePath = "C:\\Users\\DA\\eclipse-workspace\\data\\member.csv";
         try {
             // CSV 파일을 읽기 위한 CSVReader 객체 생성
             CSVReader reader =
                     new CSVReader(new InputStreamReader(new FileInputStream(filePath), "EUC-KR"));
             // 특정 행을 선택
-            String[] row = reader.readNext(); // 첫 번째 행
+            String[] row; // 첫 번째 행
             while ((row = reader.readNext()) != null) {
                 // 현재 행의 첫 번째 값 출력
-                if (name.equals(row[1]) && row[4].equals(role)) {
+                if (loginId.equals(row[0]) && row[4].equals(role)) {
                     return true;
                 }
             }
@@ -200,6 +201,105 @@ public class FileIO implements CRUDInterface {
         }
 
         return memberInfo;
+    }
+
+    @Override
+    public void selectByFile(String fileName, String memberId) {
+        String filePath = "C:\\Users\\DA\\eclipse-workspace\\data\\" + fileName + ".csv";
+        File file = new File(filePath);
+        CSVReader reader = null;
+        try {
+            reader = new CSVReader(new InputStreamReader(new FileInputStream(file), "EUC-KR"));
+            String[] line;
+            // 대출이력조회 후 대출가능한 도서 조회
+            // System.out.println(memberId);
+
+            while ((line = reader.readNext()) != null) {
+                for (String value : line) {
+                    if (memberId.equals(value)) {
+                        break;
+                    } else {
+                        System.out.print(value + "\t");
+                    }
+
+                }
+                System.out.println();
+            }
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (CsvValidationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void registerLoan(String memberId, String input, String fileName) {
+        String filePath = "C:\\Users\\DA\\eclipse-workspace\\data\\" + fileName + ".csv";
+
+
+        String filebook = "C:\\Users\\DA\\eclipse-workspace\\data\\book.csv";
+        File file = new File(filebook);
+        CSVReader reader = null;
+
+        try {
+            reader = new CSVReader(new InputStreamReader(new FileInputStream(file), "EUC-KR"));
+            String[] line;
+            while ((line = reader.readNext()) != null) {
+                for (String value : line) {
+                    System.out.print(value + "\t");
+                }
+                System.out.println();
+            }
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (CsvValidationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+
+        try {
+            Scanner sc = new Scanner(System.in);
+            BufferedWriter writer;
+            CSVWriter csvWriter;
+            writer = new BufferedWriter(
+                    new OutputStreamWriter(new FileOutputStream(filePath, true), "EUC-KR"));
+            csvWriter = new CSVWriter(writer);
+            // 현재 날짜 구하기
+            LocalDate now = LocalDate.now();
+            // 포맷 정의
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            // 포맷 적용
+            String formatedNow = now.format(formatter);
+            // 대출정보입력(대출한 아이디, 대출날짜, 도서아이디)
+
+
+            // 14일 추가
+            LocalDate after14Days = now.plusDays(14);
+            // 포맷 정의
+            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            // 포맷 적용
+            String formattedAfter14Days = after14Days.format(formatter2);
+
+
+            String[] memberInfo = new String[] {memberId, formatedNow, formattedAfter14Days, input};
+
+            csvWriter.writeNext(memberInfo);
+            csvWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -8,6 +8,7 @@ public class UI {
     private CRUDInterface crud;
     private boolean select;
     private String[] menus;
+    private MemberImpl member;
 
     public UI() {
         sc = new Scanner(System.in);
@@ -33,6 +34,7 @@ public class UI {
                     break;
                 case 3:
                     crud.registerByFile("member");
+                    break;
                 case 4:
                     select = false;
                     break;
@@ -55,8 +57,14 @@ public class UI {
     // 로그인 메뉴
     private void loginMenu(String role) throws IOException {
         System.out.println("=======로그인=======");
-        String name = sc.next();
-        if (crud.selectOneMember(name, role)) {
+        System.out.println("***메뉴를 나가려면 exit를 입력해주세요***");
+        String loginId = sc.next();
+        if (loginId.equals("exit")) {
+            return;
+        }
+        if (crud.selectOneMember(loginId, role)) {
+            member = new MemberImpl(loginId);
+            member.setMemberId(member.getMemberId());
             System.out.println("로그인을 성공했습니다");
             if (role.equals("관리자")) {
                 managerMenu();
@@ -64,20 +72,18 @@ public class UI {
                 bookMenu();
             }
         } else {
-            System.out.println(name + "이라는 " + role + "은(는) 없습니다.");
+            System.out.println(member.getMemberId() + "이라는 " + role + "은(는) 없습니다.");
             initMenu();
         }
-
-        // 로긴성공하면 관리자 메뉴로 이동하고
-        // 실패하면 초기화면
     }
 
     // 도서 메뉴
     private void bookMenu() throws IOException {
         while (select) {
             System.out.println("=======도서 프로그램=======");
-            System.out.println("0. 뒤로\t 1. 나의대출내역\t 2. 대출가능도서\t3. 종료");
+            System.out.println("0. 뒤로\t 1. 나의대출내역\t 2. 대출가능도서조회\t3. 종료");
             System.out.print("번호로 입력해주세요 -> ");
+
             int input = sc.nextInt();
             switch (input) {
                 case 0:
@@ -93,8 +99,6 @@ public class UI {
                     select = false;
                     break;
                 default:
-
-
             }
             if (!select) {
                 break;
@@ -109,28 +113,25 @@ public class UI {
         }
     }
 
+    // 대출 실행 로직
     private void excusionLoan() throws IOException {
-        // 연장/반납
         while (select) {
             System.out.println("=======대출실행 프로그램=======");
-            System.out.println("0. 뒤로\t 1. 대출실행\t3. 종료");
-            System.out.print("번호로 입력해주세요 -> ");
-            int input = sc.nextInt();
+            // 로그인한 회원의 도서만 조회하기
+            crud.selectByFile("loan", member.getMemberId());
+            System.out.println("0. 뒤로 \t1. 종료");
+            System.out.println("대출할 대출번호를 입력해주세요 -> ");
+            String input = sc.next();
             switch (input) {
-                case 0:
+                case "0":
                     bookMenu();
                     break;
-                case 1:
-                    // 연장하기
-                    break;
-                case 2:
-                    // 반납하기
-                    break;
-                case 3:
-                    // 반납하기
+                case "1":
                     select = false;
                     break;
                 default:
+                    crud.registerLoan(member.getMemberId(), input, "loan");
+                    System.out.println("대출 성공");
             }
             if (!select) {
                 break;
@@ -162,7 +163,6 @@ public class UI {
                     // 반납하기
                     break;
                 case 3:
-                    // 반납하기
                     select = false;
                     break;
                 default:
